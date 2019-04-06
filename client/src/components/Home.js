@@ -1,11 +1,12 @@
 import React from 'react';
 import { Header, } from 'semantic-ui-react';
 import Comments from './Comments';
+import VideoView from './VideoView';
 
 const Home = () => (
   <div>
-  <Header as="h3" textAlign="center">Devise Auth App</Header>
   <br />
+  <VideoView />
   <Comments />
   </div>
 )

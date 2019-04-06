@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button, Icon, Header, Image, Segment, Grid } from 'semantic-ui-react'
 import CommentForm from './CommentForm'
 import { deleteComment } from '../reducers/comments'
+import { AuthConsumer } from '../providers/AuthProvider'
 
 const defaultImage = 'https://resources-live.sketch.cloud/files/6f304d0b-fd53-4d76-8fa4-3bbd49f2b696.png?Expires=1554685200&Signature=htQQ86E9s68e~-DlOp1k2kmORHfmxk3sZo3rVzMZaskEFSeE1ayDltK~1KCQ2V7esIq5l0Vcqf9WPyCPzJKkR~rhwlqjzXgE74DATtCvSCmNIQ28ru61dI5WKU~T3VfeanYnSkujS623uOF1aF92THVMWHWNWOh8qZOZMwPuhVk_&Key-Pair-Id=APKAJOITMW3RWOLNNPYA';
 
@@ -24,6 +25,7 @@ class Comment extends React.Component {
   render() {
     const { comment = {} } = this.props
     const { showForm } = this.state
+    const { auth: { user } } = this.props
 
     return (
       <Segment>
@@ -44,7 +46,7 @@ class Comment extends React.Component {
               <CommentForm {...comment} closeForm={this.toggleForm} />
               :
               <div style={styles.div}>
-                <p>{comment.author}</p>
+                <p>{user.name}</p>
                 <br />
                 <p>{comment.post}</p>
               </div>
@@ -66,4 +68,12 @@ const mapStateToProps = (state, props) => {
   return { comment: state.comments.find(comment => comment.id === parseInt(props.match.params.id)) }
 }
 
-export default connect(mapStateToProps)(Comment)
+const ConnectedComment = (props) => (
+  <AuthConsumer>
+    {auth =>
+      <Comment {...props} auth={auth} />
+    }
+  </AuthConsumer>
+)
+
+export default connect(mapStateToProps)(ConnectedComment)

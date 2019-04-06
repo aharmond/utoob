@@ -35,19 +35,19 @@ class CommmentForm extends React.Component {
         <Header as='h1' style={styles.header}>
           { id ? 'Edit Comment' : 'Add Comment'}
         </Header>
-        <Form style={styles.form} onSubmit={this.handleSubmit}>
-          <Input
+        <Form onSubmit={this.handleSubmit}>
+          {/* <Input
             name='author'
             placeholder='Author'
             defaultValue={author}
             required
             onChange={this.handleChange}
             style={{ width: '100%', }}
-          />
+          /> */}
           <br />
           <Input
             name='post'
-            placeholder='Post'
+            placeholder='Add a public comment'
             defaultValue={post}
             required
             onChange={this.handleChange}
