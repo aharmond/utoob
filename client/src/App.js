@@ -11,6 +11,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import { Switch, Route, } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { Container, } from "semantic-ui-react";
+import FetchComments from './components/FetchComments';
 import VideoForm from './components/videocomponents/VideoForm';
 import VideoPage from './components/videocomponents/VideoPage';
 
@@ -25,6 +26,7 @@ const App = () => (
           <ProtectedRoute exact path="/profile" component={UserProfile} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
+          <Route path='/comments' component={FetchComments} />
           <ProtectedRoute exact path="/user/:id" component={UserView} />
           <ProtectedRoute exact path="/videos/new" component={VideoForm} />
           <Route exact path='/users/:user_id/videos/:id' component={VideoPage} />
