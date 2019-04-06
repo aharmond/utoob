@@ -23,17 +23,18 @@ class VideoForm extends React.Component {
     }
 
     handleSubmit = (e) => {
+        const { user } = this.props.auth
         const video = this.state
         e.preventDefault()
         if (this.props.match.params.id) {
             axios.put(`/api/videos/${this.props.match.params.id}`, video)
                 .then( res => {
-                    this.props.history.push(`/videos/${res.data.id}`)
+                    this.props.history.push(`/users/${user.id}/videos/${res.data.id}`)
                 })
         } else {
             axios.post(`/api/videos`, video)
                 .then( res => {
-                    this.props.history.push(`/videos/${res.data.id}`)
+                    this.props.history.push(`/users/${user.id}/videos/${res.data.id}`)
                 })
             }
     }

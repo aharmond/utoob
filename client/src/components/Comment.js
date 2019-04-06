@@ -23,9 +23,8 @@ class Comment extends React.Component {
   }
 
   render() {
-    const { comment = {} } = this.props
+    const { author, post } = this.props.comment
     const { showForm } = this.state
-    const { auth: { user } } = this.props
 
     return (
       <Segment>
@@ -43,12 +42,12 @@ class Comment extends React.Component {
               </Button>
             </div>
             {showForm ?
-              <CommentForm {...comment} video_id={this.props.video_id} closeForm={this.toggleForm} />
+              <CommentForm {...this.props.comment} video_id={this.props.video_id} closeForm={this.toggleForm} author={this.props.auth.user.name} />
               :
               <div style={styles.div}>
-                <p>{user.name}</p>
+                <p>{author}</p>
                 <br />
-                <p>{comment.post}</p>
+                <p>{post}</p>
               </div>
             }
           </Grid.Column>

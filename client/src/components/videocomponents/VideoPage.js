@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Iframe from 'react-iframe';
 import { Segment, Header, Divider, Image } from 'semantic-ui-react';
-import Comments from '../Comments';
+import CommentsView from '../commentcomponents/CommentsView';
 
 class VideoPage extends React.Component {
   state = { 
@@ -49,7 +49,7 @@ class VideoPage extends React.Component {
           {description}
         </Segment>
         <br />
-        <Comments id={id} />
+        <CommentsView id={id} name={name} />
       </>
     )
   }
