@@ -55,7 +55,7 @@ class VideoPage extends React.Component {
 
 const SegmentStyle = styled(Container)`
   ${media.tablet`
-    width: 100%
+    width: 45em !important
     height: 30em
   `},
 `
