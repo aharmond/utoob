@@ -11,19 +11,22 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { Switch, Route, } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { Container, } from "semantic-ui-react";
+import VideoForm from './components/VideoForm';
 
 const App = () => (
   <>
     <Navbar />
-    <Helmet bodyAttributes={{style: 'background-color : #f7f7f7f7'}} />
     <FetchUser>
       <Container>
+        <Helmet bodyAttributes={{style: 'background-color : #f7f7f7f7'}} />
         <Switch>
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/profile" component={UserProfile} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <ProtectedRoute exact path="/user/:id" component={UserView} />
+          <ProtectedRoute exact path="/videos/new" component={VideoForm} />
+          <ProtectedRoute exact path="/videos/:id/edit" component={VideoForm} />
           <Route component={NoMatch} />
         </Switch>
       </Container>

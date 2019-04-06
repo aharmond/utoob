@@ -59,7 +59,7 @@ class UserProfile extends React.Component {
   }
 
   editView = () => {
-    const { auth: { user }, } = this.props;
+    // const { auth: { user }, } = this.props;
     const { formValues: { name, email, } } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
@@ -92,7 +92,10 @@ class UserProfile extends React.Component {
           <Grid.Row>
             {editing ? this.editView() : this.profileView()}
             <Grid.Column>
-              <Button onClick={this.toggleEdit}>{editing ? 'Cancel' : 'Edit'}</Button>
+              <Button color='red' onClick={this.toggleEdit}>{editing ? 'Cancel' : 'Edit'}</Button>
+            </Grid.Column>
+            <Grid.Column>
+              <Button color='red' onClick={this.props.auth.handleLogout} content='Logout' />
             </Grid.Column>
           </Grid.Row>
         </Grid>
