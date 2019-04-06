@@ -7,13 +7,20 @@
     "devise-axios": "^1.0.24",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+<<<<<<< HEAD
     "react-redux": "^6.0.1",
+=======
+
+    "react-iframe": "^1.5.0",
+
+>>>>>>> 808e1d4886071f870dee2c6eac5dd2b94c280d78
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.86.0"
+    "semantic-ui-react": "^0.86.0",
+    "styled-components": "^4.2.0"
   },
   "proxy": "http://localhost:3001",
   "scripts": {

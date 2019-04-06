@@ -4,7 +4,7 @@ class Api::CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :update, :destroy]
 
   def index
-    render json: Comment.all
+    render json: Comment.all.order(created_at: :desc)
   end
 
   def show
@@ -43,6 +43,6 @@ class Api::CommentsController < ApplicationController
     end
 
     def comment_params
-      params.require(:comment).permit(:title, :duration, :genre, :description, :trailer)
+      params.require(:comment).permit(:post)
     end
 end

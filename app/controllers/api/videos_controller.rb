@@ -3,7 +3,12 @@ class Api::VideosController < ApplicationController
   before_action :set_video, only: [:show, :update, :destroy]
 
   def index
-    render json: Video.all
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      render json: @user.videos
+    else
+      render json: Video.all
+    end
   end
 
   def show
@@ -11,7 +16,7 @@ class Api::VideosController < ApplicationController
   end
 
   def create
-    video = Video.new(video_params)
+    video = current_user.videos.new(video_params)
 
     if video.save
       render json: video
