@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Iframe from 'react-iframe';
-import { Segment, Header, Divider } from 'semantic-ui-react';
+import { Segment, Header, Divider, Image } from 'semantic-ui-react';
 
 class VideoPage extends React.Component {
   state = { 
@@ -28,8 +28,8 @@ class VideoPage extends React.Component {
       <>
         <Iframe
           url={trailer}
-          width="850px"
-          height="480px"
+          width="100%"
+          height="550px"
           id={id}
           display="initial"
           position="relative"
@@ -38,7 +38,13 @@ class VideoPage extends React.Component {
         <Segment>
           <Header content={title} />
           <Divider />
-          <Header content={name} />
+          <Header>
+            <Image
+              src='https://resources-live.sketch.cloud/files/6f304d0b-fd53-4d76-8fa4-3bbd49f2b696.png?Expires=1554685200&Signature=htQQ86E9s68e~-DlOp1k2kmORHfmxk3sZo3rVzMZaskEFSeE1ayDltK~1KCQ2V7esIq5l0Vcqf9WPyCPzJKkR~rhwlqjzXgE74DATtCvSCmNIQ28ru61dI5WKU~T3VfeanYnSkujS623uOF1aF92THVMWHWNWOh8qZOZMwPuhVk_&Key-Pair-Id=APKAJOITMW3RWOLNNPYA'
+              size='medium'
+            />
+            {name}
+          </Header>
           {description}
         </Segment>
       </>
