@@ -7,13 +7,9 @@
     "devise-axios": "^1.0.24",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-<<<<<<< HEAD
-    "react-redux": "^6.0.1",
-=======
-
+    "react-helmet": "^5.2.0",
     "react-iframe": "^1.5.0",
-
->>>>>>> 808e1d4886071f870dee2c6eac5dd2b94c280d78
+    "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "redux": "^4.0.1",
