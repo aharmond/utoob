@@ -1,6 +1,9 @@
 import React from 'react';
+
 import styled from 'styled-components'
 import { Header, Container, Grid, Segment, Divider, Image, Card} from 'semantic-ui-react';
+
+
 import { Link, } from 'react-router-dom'
 import Iframe from 'react-iframe'
 import axios from 'axios';

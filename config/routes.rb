@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :users, only: [:show, :update,] do
       resources :comments, only: [:index]
-      resources :videos, only: [:index]
+      resources :videos, only: [:index, :show]
     end
   end
 
