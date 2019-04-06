@@ -7,22 +7,22 @@ const DELETE_COMMENT = 'DELETE_COMMENT'
 
 export const getComments = (setLoaded) => {
   return (dispatch) => {
-    axios.get('/api/comments')
+    axios.get(`/api/videos/${this.props.id}/comments`)
     .then( res => dispatch({ type: COMMENTS, comments: res.data }))
     .then( setLoaded )
   }
 }
 
-export const addComment = (comment) => {
+export const addComment = (comment, video_id) => {
   return (dispatch) => {
-    axios.post('/api/comments', { comment })
+    axios.post(`/api/videos/${video_id}/comments`, { comment })
     .then( res => dispatch({ type: ADD_COMMENT, comment: res.data }))
   }
 }
 
-export const updateComment = (comment) => {
+export const updateComment = (comment, video_id) => {
   return (dispatch) => {
-    axios.put(`/api/comments/${comment.id}`, { comment })
+    axios.put(`/api/videos/${video_id}/comments/${comment.id}`, { comment })
     .then( res => dispatch({ type: UPDATE_COMMENT, comment: res.data }))
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Form, Input } from 'semantic-ui-react'
+import { Header, Form, Input, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { updateComment, addComment } from '../reducers/comments';
 
@@ -19,18 +19,18 @@ class CommmentForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { dispatch, closeForm } = this.props
+    const { dispatch, closeForm, video_id } = this.props
     const comment = { ...this.state }
     const func = this.props.id ? updateComment : addComment
-    dispatch(func(comment))
-    closeForm()
+    dispatch(func(comment, video_id))
+    // closeForm()
   }
 
   render() {
     const { id, author, post } = this.props
 
     return (
-      <div>
+      <Segment>
         <br />
         <Header as='h1' style={styles.header}>
           { id ? 'Edit Comment' : 'Add Comment'}
@@ -59,7 +59,7 @@ class CommmentForm extends React.Component {
         </Form>
         <br />
         <br />
-      </div>
+      </Segment>
     )
   }
 }

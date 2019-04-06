@@ -5,41 +5,34 @@ import CommentForm from './CommentForm'
 import Comment from './Comment'
 
 class Comments extends React.Component {
-  state = { showForm: false, }
+  // state = { showForm: false, }
 
-  toggleForm = () => {
-    this.setState( state => {
-      return { showForm: !state.showForm, }
-    })
-  }
+  // toggleForm = () => {
+  //   this.setState( state => {
+  //     return { showForm: !state.showForm, }
+  //   })
+  // }
 
   comments = () => {
     return this.props.comments.map( comment =>
       <Item key={ comment.id }>
-        <Comment />
+        <Comment id={comment.id} video_id={this.props.id} />
       </Item>
     )
   }
   
   render() {
-    const { showForm } = this.state
+    // const { showForm } = this.state
 
     return (
-      <Container>
+      <>
+        <CommentForm video_id={this.props.id} />
         <br />
-        <Button inverted color='red' onClick={this.toggleForm}>
-          { showForm ? <Icon name='close' /> : <Icon name='add' /> }
-        </Button>
+        <Item.Group style={{ margin: '50px' }}>
+          { this.comments() }
+        </Item.Group>
         <br />
-        { showForm ?
-          <CommentForm closeForm={this.toggleForm} />
-        :
-          <Item.Group style={{ margin: '50px' }}>
-            { this.comments() }
-          </Item.Group>
-        }
-        <br />
-      </Container>
+      </>
     )
   }
 }

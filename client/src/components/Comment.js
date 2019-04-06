@@ -43,7 +43,7 @@ class Comment extends React.Component {
               </Button>
             </div>
             {showForm ?
-              <CommentForm {...comment} closeForm={this.toggleForm} />
+              <CommentForm {...comment} video_id={this.props.video_id} closeForm={this.toggleForm} />
               :
               <div style={styles.div}>
                 <p>{user.name}</p>

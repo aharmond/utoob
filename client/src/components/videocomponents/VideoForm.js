@@ -1,5 +1,5 @@
 import React from 'react'
-import {AuthConsumer} from '../providers/AuthProvider'
+import {AuthConsumer} from '../../providers/AuthProvider'
 import {Form, Container, } from 'semantic-ui-react'
 import axios from 'axios';
 
