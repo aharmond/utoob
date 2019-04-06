@@ -2,7 +2,7 @@ import React from 'react'
 import { AuthConsumer } from '../providers/AuthProvider'
 import { Form, Grid, Image, Container, Divider, Header, Button } from 'semantic-ui-react'
 
-const defaultImage = 'https://sketch.cloud/s/ZvvwZ/8yA52OY';
+const defaultImage = 'https://resources-live.sketch.cloud/files/6f304d0b-fd53-4d76-8fa4-3bbd49f2b696.png?Expires=1554685200&Signature=htQQ86E9s68e~-DlOp1k2kmORHfmxk3sZo3rVzMZaskEFSeE1ayDltK~1KCQ2V7esIq5l0Vcqf9WPyCPzJKkR~rhwlqjzXgE74DATtCvSCmNIQ28ru61dI5WKU~T3VfeanYnSkujS623uOF1aF92THVMWHWNWOh8qZOZMwPuhVk_&Key-Pair-Id=APKAJOITMW3RWOLNNPYA';
 
 class Profile extends React.Component {
   state = { editing: false, formValues: { name: '', email: '', } }
