@@ -5,13 +5,17 @@ import { Link, withRouter, } from 'react-router-dom'
 import styled from 'styled-components'
 
 class Navbar extends React.Component {
-  
+
   rightNavItems = () => {
-    const { auth: { user }, location, } = this.props;
-    
+    const { auth: { user, handleLogout, }, location, } = this.props;
+
     if (user) {
       return (
         <Menu.Menu position='right'>
+          <Menu.Item
+            name='logout'
+            onClick={() => handleLogout(this.props.history)}
+          />
           <Menu.Item
             name='profile'
             id='profile'
@@ -66,7 +70,7 @@ class Navbar extends React.Component {
       )
     }
   }
-  
+
   render() {
     
     return (
@@ -94,9 +98,9 @@ class Navbar extends React.Component {
 export class ConnectedNavbar extends React.Component {
   render() {
     return (
-      <AuthConsumer> 
-        { auth => 
-          <Navbar { ...this.props } auth={auth} />
+      <AuthConsumer>
+        {auth =>
+          <Navbar {...this.props} auth={auth} />
         }
       </AuthConsumer>
     )
