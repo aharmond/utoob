@@ -1,13 +1,13 @@
 import React from 'react'
 import { AuthConsumer, } from "../providers/AuthProvider";
-import { Menu, Image, Container } from 'semantic-ui-react'
+import { Menu, Image, Container, Button } from 'semantic-ui-react'
 import { Link, withRouter, } from 'react-router-dom'
 import styled from 'styled-components'
 
 class Navbar extends React.Component {
   
   rightNavItems = () => {
-    const { auth: { user, handleLogout, }, location, } = this.props;
+    const { auth: { user }, location, } = this.props;
     
     if (user) {
       return (
@@ -25,28 +25,43 @@ class Navbar extends React.Component {
               />
           </Menu.Item>
           <Menu.Item
-            name='logout'
-            onClick={ () => handleLogout(this.props.history) }
+            name='addvideo'
+            id='addvideo'
+          >
+            <Button
+              as={Link}
+              to='/videos/new'
+              color='red'
+              content='Upload Video'
             />
+          </Menu.Item>
         </Menu.Menu>
       )
     } else {
       return (
         <Menu.Menu position='right'>
-          <Link to='/login'>
             <Menu.Item
               id='login'
               name='login'
-              active={location.pathname === '/login'}
+            >
+              <Button
+                as={Link}
+                to='/login'
+                color='red'
+                content='Login'
               />
-          </Link>
-          <Link to='/register'>
+            </Menu.Item>
             <Menu.Item
               id='register'
               name='register'
-              active={location.pathname === '/register'}
+            >
+              <Button
+                as={Link}
+                to='/register'
+                color='red'
+                content='Register'
               />
-          </Link>
+            </Menu.Item>
         </Menu.Menu>
       )
     }
