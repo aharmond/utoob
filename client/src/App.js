@@ -9,11 +9,13 @@ import UserProfile from './components/usercomponents/UserProfile';
 import FetchUser from './components/FetchUser';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Switch, Route, } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import { Container, } from "semantic-ui-react";
 
 const App = () => (
   <>
     <Navbar />
+    <Helmet bodyAttributes={{style: 'background-color : #f7f7f7f7'}} />
     <FetchUser>
       <Container>
         <Switch>
