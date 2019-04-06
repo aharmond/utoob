@@ -9,9 +9,9 @@ class Home extends React.Component {
   state = { videos: [], };
 
   componentDidMount() {
-    axios.get(`/api/videos/${this.props.match.params.id}`)
+    axios.get(`/api/videos/`)
     .then( res => {
-      this.setState({ product: res.data, });
+      this.setState({ videos: res.data, });
     })
 }
 
@@ -25,6 +25,15 @@ class Home extends React.Component {
       <Container>
 
       
+      {/* <Iframe url="https://www.youtube.com/embed/Bn375-qFpdE"
+          width="600px"
+          height="370px"
+          id="myId"
+          className="myClassname"
+          display="initial"
+          position="relative"
+          allowFullScreen/>
+
       <Iframe url="https://www.youtube.com/embed/Bn375-qFpdE"
           width="600px"
           height="370px"
@@ -34,24 +43,30 @@ class Home extends React.Component {
           position="relative"
           allowFullScreen/>
 
+        <Iframe url="https://www.youtube.com/embed/Bn375-qFpdE"
+          width="600px"
+          height="370px"
+          id="myId"
+          className="myClassname"
+          display="initial"
+          position="relative"
+          allowFullScreen/> */}
+
 
       <Card.Group itemsPerRow={4}>
         { videos.map( video =>
           <Card key={video.id}>
            
             <Iframe url={video.trailer}  
-                  width="450px"
-                  height="450px"
-                  id="myId"
-                  className="myClassname"
+                  
                   display="initial"
                   position="relative"
-                  allowFullScreen/>/>
+                  allowFullScreen/>
             <Card.Content>
               <Divider />
               <Card.Header>
                 need to add correct route
-              <Link to="/">{ video.name }</Link>
+              <Link to="/">{ video.title }</Link>
               </Card.Header>
             </Card.Content>
           </Card>
