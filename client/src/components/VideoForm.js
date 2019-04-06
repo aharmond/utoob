@@ -5,107 +5,77 @@ import axios from 'axios';
 
 
 class VideoForm extends React.Component {
-    state = { video: { title: '', duration: '', genre: '', description:'', trailer:''},}
+    state = { title: '', duration: '', genre: '', description:'', trailer:'',}
 
     componentDidMount() {
         if (this.props.match.params.id) {
             axios.get(`/api/videos/${this.props.match.params.id}`)
             .then( res => {
-                this.setState({ video: res.data})
+                this.setState( res.data )
             })
             
         } 
     }
     
     handleChange = (e) => {
-        const {
-            target: { name, value }
-          } = e;
-          this.setState({editing: false, video: { ...this.state.video, [name]: value } });
+        const { name, value } = e.target;
+        this.setState({ [name]: value });
     }
 
     handleSubmit = (e) => {
+        const video = this.state
         e.preventDefault()
-            if (this.props.match.params.id) {
-                axios.put(`/api/videos/${this.props.match.params.id}`)
+        if (this.props.match.params.id) {
+            axios.put(`/api/videos/${this.props.match.params.id}`, video)
                 .then( res => {
-                    this.setState({ video: res.data})
+                    this.props.history.push(`/videos/${res.data.id}`)
+                })
+        } else {
+            axios.post(`/api/videos`, video)
+                .then( res => {
+                    this.props.history.push(`/videos/${res.data.id}`)
                 })
             }
-        }
     }
 
     render() { 
+        const { title, duration, genre, description, trailer, } = this.state
         return (
             <Container>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Input 
-                    label="title of video here"
-                    name="title"
-                    value="title"
-                    autoFocus
-                    onChange={this.handleChange}
+                        label="Title"
+                        name="title"
+                        value={title}
+                        autoFocus
+                        onChange={this.handleChange}
                     />
                     <Form.Input 
-                    label="duration of video"
-                    name="duration"
-                    value="duration"
-                    onChange={this.handleChange}
+                        label="Length"
+                        name="duration"
+                        value={duration}
+                        onChange={this.handleChange}
                     />
                     <Form.Input 
-                    label="genre"
-                    name='genre'
-                    value='genre'
-                    onChange={this.handleChange} 
+                        label="Genre"
+                        name='genre'
+                        value={genre}
+                        onChange={this.handleChange} 
                     />
                     <Form.Input 
-                    label="description of video"
-                    name='description'
-                    value="description" 
-                    onChange={this.handleChange}
+                        label="Description"
+                        name='description'
+                        value={description} 
+                        onChange={this.handleChange}
                     />
                     <Form.Input 
-                    label="trailer"
-                    name='trailer'
-                    value='trailer'
-                    onChange={this.handleChange}
+                        label="Source"
+                        name='trailer'
+                        value={trailer}
+                        onChange={this.handleChange}
                     />
-                </Form>
-                <Form id="edit">
-                    <Form.Input 
-                    label="title of video here"
-                    name="title"
-                    value={title}
-                    autoFocus
-                    required
-                    onChange={this.handleChange}
-                    />
-                    <Form.Input 
-                    label="duration of video"
-                    name="duration"
-                    value={duration}
-                    required
-                    onChange={this.handleChange}
-                    />
-                    <Form.Input 
-                    label="genre"
-                    name='genre'
-                    value={genre}
-                    required
-                    onChange={this.handleChange} 
-                    />
-                    <Form.Input 
-                    label="description of video"
-                    name='description'
-                    value={description}
-                    required 
-                    onChange={this.handleChange}
-                    />
-                    <Form.Input 
-                    label="trailer"
-                    name='trailer'
-                    value={trailer}
-                    onChange={this.handleChange}
+                    <Form.Button
+                        content="Submit"
                     />
                 </Form>
             </Container>

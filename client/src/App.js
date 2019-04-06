@@ -24,11 +24,9 @@ const App = () => (
           <ProtectedRoute exact path="/profile" component={UserProfile} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-<<<<<<< HEAD
           <ProtectedRoute exact path="/user/:id" component={UserView} />
-=======
-          <Route exact path="/videoform" component={VideoForm} />
->>>>>>> 829b46aa96453fe693d8232d8c4cc94d163de678
+          <ProtectedRoute exact path="/videos/new" component={VideoForm} />
+          <ProtectedRoute exact path="/videos/:id/edit" component={VideoForm} />
           <Route component={NoMatch} />
         </Switch>
       </Container>
