@@ -1,5 +1,5 @@
 import React from 'react';
-
+import styled from 'styled-components'
 import { Header, Container, Grid, Segment, Divider, Image, Card} from 'semantic-ui-react';
 import { Link, } from 'react-router-dom'
 import Iframe from 'react-iframe'
@@ -22,61 +22,100 @@ class Home extends React.Component {
       <br />
       <Header as='h1'>All Videos</Header>
       <br/>
-      <Container>
+      <Grid >
+      <Grid.Row columns={2}>
+        <Grid.Column >
+          <Container>
+            <Card.Group itemsPerRow={4}>
+              
+                <StyledCard key='1'>
+                  <Iframe url='https://www.youtube.com/embed/GdWvmzBvV_U' 
+                        
+                        display="initial"
+                        position="relative"
+                        allowFullScreen/>
+                  <Card.Content>
 
+                    <Card.Header>
+                    <Link to="/user/:id">Movie</Link>
+                    </Card.Header>
+                  </Card.Content>
+                </StyledCard>
+              
+            </Card.Group>
+          </Container>
+        </Grid.Column>
+        <Grid.Column>
+
+
+          <StyledContainer >
+            <Card.Group itemsPerRow={4}>
+                
+                { videos.map( video =>
+                 
+                <Card key={video.id}>
+                  <Iframe url={video.trailer}  
+                        
+                        display="initial"
+                        position="relative"
+                        allowFullScreen/>
+                  <Card.Content>
+
+                    <Card.Header>
+                    <Link to="/user/:id">Movie</Link>
+                    </Card.Header>
+                  </Card.Content>
+                </Card>
+                )}
+            </Card.Group>
+          </StyledContainer >
+        </Grid.Column>
+        
+        
+        </Grid.Row>
+        <Grid.Row>
+        <Grid.Column >
+          <Container >
+            <Card.Group itemsPerRow={4}>
+              { videos.map( video =>
+                <Card key={video.id}>
+                  <Iframe url={video.trailer}  
+                        
+                        display="initial"
+                        position="relative"
+                        allowFullScreen/>
+                  <Card.Content>
+
+                    <Card.Header>
+                    <Link to="/user/:id">{ video.title }</Link>
+                    </Card.Header>
+                  </Card.Content>
+                </Card>
+              )}
+            </Card.Group>
+          </Container>
+        </Grid.Column>
+          </Grid.Row>          
       
-      {/* <Iframe url="https://www.youtube.com/embed/Bn375-qFpdE"
-          width="600px"
-          height="370px"
-          id="myId"
-          className="myClassname"
-          display="initial"
-          position="relative"
-          allowFullScreen/>
-
-      <Iframe url="https://www.youtube.com/embed/Bn375-qFpdE"
-          width="600px"
-          height="370px"
-          id="myId"
-          className="myClassname"
-          display="initial"
-          position="relative"
-          allowFullScreen/>
-
-        <Iframe url="https://www.youtube.com/embed/Bn375-qFpdE"
-          width="600px"
-          height="370px"
-          id="myId"
-          className="myClassname"
-          display="initial"
-          position="relative"
-          allowFullScreen/> */}
-
-
-      <Card.Group itemsPerRow={4}>
-        { videos.map( video =>
-          <Card key={video.id}>
-           
-            <Iframe url={video.trailer}  
-                  
-                  display="initial"
-                  position="relative"
-                  allowFullScreen/>
-            <Card.Content>
-              <Divider />
-              <Card.Header>
-                need to add correct route
-              <Link to="/">{ video.title }</Link>
-              </Card.Header>
-            </Card.Content>
-          </Card>
-        )}
-      </Card.Group>
-      </Container>
+        </Grid>
       </>
     )
   }
 }
 
+const StyledCard = styled(Card)`
+  height: 375px !important
+  width: 500px !important
+`
+
+const StyledContainer = styled(Container)`
+  display: flex !important
+  align-items: flex-start !important
+`
+
 
 export default Home;
+      
+                
+          
+
