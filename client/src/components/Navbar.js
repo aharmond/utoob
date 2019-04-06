@@ -12,10 +12,10 @@ class Navbar extends React.Component {
     if (user) {
       return (
         <Menu.Menu position='right'>
-          <Menu.Item
+          {/* <Menu.Item
             name='logout'
             onClick={() => handleLogout(this.props.history)}
-          />
+          /> */}
           <Menu.Item
             name='profile'
             id='profile'
@@ -84,7 +84,7 @@ class Navbar extends React.Component {
                 as={Link} 
                 to='/' 
                 src='https://resources-live.sketch.cloud/files/c0514774-a772-457b-87d0-a07e56ce861e.png?Expires=1554685200&Signature=dgzVHCZMqmphUhbvqhSE2NTtV0TCjTI4L3FiDauCfRHlmOnrIm~VwJaXkFmuI-z9sp5kdMrBMT6~E0hMO1rnPMc~RsU23hMR9QW9M0M5MPdTJaICyLVy9PpIU7NshuBsjU6Nbc5uXHRCBzI8i4XNLQHVf53-3jnkZDvBmccKv4c_&Key-Pair-Id=APKAJOITMW3RWOLNNPYA'
-                size='small' 
+                size='tiny' 
                 />
             </Menu.Item>
             { this.rightNavItems() }
