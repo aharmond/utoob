@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import Iframe from 'react-iframe';
-import { Segment, Header, Divider, Container } from 'semantic-ui-react';
-import Comments from '../Comments';
+import { Segment, Header, Divider, Image, Container } from 'semantic-ui-react';
+import CommentsView from '../commentcomponents/CommentsView';
+import { media } from '../../theme/media'
 import styled from 'styled-components'
-import { media, media2 } from '../../theme/media'
 
 class VideoPage extends React.Component {
   state = {
@@ -32,22 +32,28 @@ class VideoPage extends React.Component {
           <SegmentStyle>
         <Iframe
           url={trailer}
-          width="55em"
-          height="30em"
+          width="100%"
+          height="550px"
           id={id}
           display="initial"
           position="relative"
           allowFullScreen
         />
         </SegmentStyle>
-            <Segment>
-              <Header content={title} />
-              <Divider />
-              <Header content={name} />
-              {description}
-            </Segment>
-            <br />
-            <Comments id={id} />
+        <Segment>
+          <Header content={title} />
+          <Divider />
+          <Header>
+            <Image
+              src='https://resources-live.sketch.cloud/files/6f304d0b-fd53-4d76-8fa4-3bbd49f2b696.png?Expires=1554685200&Signature=htQQ86E9s68e~-DlOp1k2kmORHfmxk3sZo3rVzMZaskEFSeE1ayDltK~1KCQ2V7esIq5l0Vcqf9WPyCPzJKkR~rhwlqjzXgE74DATtCvSCmNIQ28ru61dI5WKU~T3VfeanYnSkujS623uOF1aF92THVMWHWNWOh8qZOZMwPuhVk_&Key-Pair-Id=APKAJOITMW3RWOLNNPYA'
+              size='medium'
+            />
+            {name}
+          </Header>
+          {description}
+        </Segment>
+        <br />
+        <CommentsView id={id} name={name} />
       </>
     )
   }
@@ -55,8 +61,8 @@ class VideoPage extends React.Component {
 
 const SegmentStyle = styled(Container)`
   ${media.tablet`
-    width: 45em !important
-    height: 30em
+    width: 70% !important
+    height: 450px
   `},
 `
 

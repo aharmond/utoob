@@ -16,7 +16,7 @@ class Comments extends React.Component {
   comments = () => {
     return this.props.comments.map( comment =>
       <Item key={ comment.id }>
-        <Comment id={comment.id} video_id={this.props.id} />
+        <Comment comment={comment} video_id={this.props.id} />
       </Item>
     )
   }

@@ -9,8 +9,11 @@ class CommmentForm extends React.Component {
   state = {...this.initialState}
 
   componentDidMount() {
-    if (this.props.id)
+    if (this.props.id) {
       this.setState({ ...this.props, })
+    } else {
+      this.setState({ author: this.props.author })
+    }
   }
 
   handleChange = (e) => {
@@ -36,14 +39,6 @@ class CommmentForm extends React.Component {
           { id ? 'Edit Comment' : 'Add Comment'}
         </Header>
         <Form onSubmit={this.handleSubmit}>
-          {/* <Input
-            name='author'
-            placeholder='Author'
-            defaultValue={author}
-            required
-            onChange={this.handleChange}
-            style={{ width: '100%', }}
-          /> */}
           <br />
           <Input
             name='post'
