@@ -9,6 +9,7 @@ import FetchUser from './components/FetchUser';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Switch, Route, } from 'react-router-dom';
 import { Container, } from "semantic-ui-react";
+import FetchComments from './components/FetchComments';
 
 const App = () => (
   <>
@@ -20,6 +21,7 @@ const App = () => (
           <ProtectedRoute exact path="/profile" component={Profile} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
+          <Route path='/comments' component={FetchComments} />
           <Route component={NoMatch} />
         </Switch>
       </Container>
