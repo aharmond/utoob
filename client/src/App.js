@@ -15,9 +15,9 @@ import { Container, } from "semantic-ui-react";
 const App = () => (
   <>
     <Navbar />
-    <Helmet bodyAttributes={{style: 'background-color : #f7f7f7f7'}} />
     <FetchUser>
       <Container>
+        <Helmet bodyAttributes={{style: 'background-color : #f7f7f7f7'}} />
         <Switch>
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/profile" component={UserProfile} />
