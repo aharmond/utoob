@@ -25,11 +25,11 @@ class Home extends React.Component {
       <br />
       <Header as='h1'>All Videos</Header>
       <br/>
-      <Grid >
+      <Grid stackable >
       <Grid.Row columns={2}>
         <Grid.Column >
           <Container>
-            <Card.Group itemsPerRow={4}>
+            <Card.Group stackable >
               
                 <StyledCard key='1'>
                   <Iframe url='https://www.youtube.com/embed/GdWvmzBvV_U' 

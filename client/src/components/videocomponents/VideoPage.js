@@ -1,23 +1,25 @@
 import React from 'react';
 import axios from 'axios';
 import Iframe from 'react-iframe';
-import { Segment, Header, Divider, Image } from 'semantic-ui-react';
+import { Segment, Header, Divider, Image, Container } from 'semantic-ui-react';
 import CommentsView from '../commentcomponents/CommentsView';
+import { media } from '../../theme/media'
+import styled from 'styled-components'
 
 class VideoPage extends React.Component {
-  state = { 
+  state = {
     video: { title: '', duration: '', genre: '', description: '', trailer: '', id: '', },
     user: { name: '' }
-  } 
+  }
 
   componentDidMount() {
     axios.get(`/api/videos/${this.props.match.params.id}`)
-      .then( res => {
-        this.setState( { video: res.data } )
+      .then(res => {
+        this.setState({ video: res.data })
       })
     axios.get(`/api/users/${this.props.match.params.user_id}`)
-      .then( res => {
-        this.setState( { user: res.data } )
+      .then(res => {
+        this.setState({ user: res.data })
       })
   }
 
@@ -27,6 +29,7 @@ class VideoPage extends React.Component {
 
     return (
       <>
+          <SegmentStyle>
         <Iframe
           url={trailer}
           width="100%"
@@ -36,6 +39,7 @@ class VideoPage extends React.Component {
           position="relative"
           allowFullScreen
         />
+        </SegmentStyle>
         <Segment>
           <Header content={title} />
           <Divider />
@@ -54,5 +58,12 @@ class VideoPage extends React.Component {
     )
   }
 }
+
+const SegmentStyle = styled(Container)`
+  ${media.tablet`
+    width: 70% !important
+    height: 450px
+  `},
+`
 
 export default VideoPage;
