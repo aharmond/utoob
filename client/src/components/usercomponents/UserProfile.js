@@ -1,15 +1,21 @@
-import React from 'react'
-import { AuthConsumer } from '../providers/AuthProvider'
-import { Form, Grid, Image, Container, Divider, Header, Button } from 'semantic-ui-react'
+import React from 'react';
+import axios from 'axios';
+import { AuthConsumer } from '../../providers/AuthProvider'
+import { Form, Grid, Image, Container, Divider, Header, Button, Segment } from 'semantic-ui-react'
 
 const defaultImage = 'https://resources-live.sketch.cloud/files/6f304d0b-fd53-4d76-8fa4-3bbd49f2b696.png?Expires=1554685200&Signature=htQQ86E9s68e~-DlOp1k2kmORHfmxk3sZo3rVzMZaskEFSeE1ayDltK~1KCQ2V7esIq5l0Vcqf9WPyCPzJKkR~rhwlqjzXgE74DATtCvSCmNIQ28ru61dI5WKU~T3VfeanYnSkujS623uOF1aF92THVMWHWNWOh8qZOZMwPuhVk_&Key-Pair-Id=APKAJOITMW3RWOLNNPYA';
 
-class Profile extends React.Component {
-  state = { editing: false, formValues: { name: '', email: '', } }
+class UserProfile extends React.Component {
+  state = { editing: false, formValues: { name: '', email: '', }, userVideos: [] }
 
   componentDidMount() {
-    const { auth: { user: { name, email } } } = this.props
+    const { auth: { user: { name, email, id } } } = this.props
     this.setState({ formValues: { name, email } })
+
+    axios.get(`/api/users/${id}/videos`)
+      .then( res => {
+        this.setState({ userVideos: res.data})
+      })
   }
 
   toggleEdit = () => this.setState({ editing: !this.state.editing })
@@ -78,7 +84,7 @@ class Profile extends React.Component {
   }
 
   render() {
-    const { editing, } = this.state
+    const { editing, userVideos } = this.state
     return (
       <Container>
         <Divider hidden />
@@ -90,6 +96,15 @@ class Profile extends React.Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
+        <Segment>
+          { userVideos.map( v => {
+            return (
+              <div key={v.id}>
+                {v.title}
+              </div>
+            )
+          }) }
+        </Segment>
       </Container>
     )
   }
@@ -98,7 +113,7 @@ class Profile extends React.Component {
 const ConnectedProfile = (props) => (
   <AuthConsumer>
     {auth =>
-      <Profile {...props} auth={auth} />
+      <UserProfile {...props} auth={auth} />
     }
   </AuthConsumer>
 )
